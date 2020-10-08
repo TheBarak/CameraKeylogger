@@ -1,0 +1,70 @@
+﻿<Window x:Class="CameraViewer.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:controls="clr-namespace:Ozeki.Media;assembly=OzekiSDK"
+        Closed="MainWindow_OnClosed"
+         Title="Camera Viewer" Height="570" Width="550"
+        ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <GroupBox Grid.Row="0" Header="Connect" HorizontalAlignment="Left" VerticalAlignment="Top" Width="534">
+            <Grid HorizontalAlignment="Center" VerticalAlignment="Top" >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="80" />
+                        <ColumnDefinition Width="150"/>
+                        <ColumnDefinition Width="80"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Content="Camera URL:" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    <TextBox Name="UrlTextBox" Grid.Column="1" HorizontalAlignment="Stretch" Height="23" VerticalAlignment="Center" />
+                    <Button Grid.Column="2" Margin="10,0,5,2" Name="ComposeButton" Content="Compose" HorizontalAlignment="Stretch"  VerticalAlignment="Bottom"  Click="Compose_Click"/>
+                </Grid>
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="150"/>
+                        <ColumnDefinition Width="100"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Button IsEnabled="False" Grid.Column="0" Name="btn_Connect" Content="Connect" HorizontalAlignment="Left" VerticalAlignment="Top" Width="70" Click="Connect_Click"/>
+                        <Button IsEnabled="False" Grid.Column="1" Name="btn_Disconnect" Content="Disconnect" HorizontalAlignment="Right"  VerticalAlignment="Top" Width="70"  Click="Disconnect_Click"/>
+                    </Grid>
+
+                </Grid>
+
+            </Grid>
+        </GroupBox>
+        <GroupBox Name="live_camera" Grid.Row="1" Header="Live camera" HorizontalAlignment="Left" VerticalAlignment="Top" Width="534" Height="272"  Background="AntiqueWhite">
+            <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,-2,0" Width="530" Height="250">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <controls:VideoViewerWPF  Grid.Row="0"  Name="videoViewer" VerticalAlignment="Center" HorizontalAlignment="Center" Width="400" Height="250" >
+                </controls:VideoViewerWPF>
+                <Label Grid.Row="1" Name="stateLabel" HorizontalAlignment="Left" />
+                <Button Content="Start" HorizontalAlignment="Left" VerticalAlignment="Center" Width="60" Click="button_Start_Click"/>
+                <Button Content="Stop" HorizontalAlignment="Right" VerticalAlignment="Center" Width="60" Click="button_Stop_Click"/>
+            </Grid>
+        </GroupBox>
+        <GroupBox Name="KeylogGB" Grid.Row="1" Header="Keyloger" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="540" Height="190" Background="DarkGray" Foreground="DarkRed" >
+            <ListBox x:Name="Keylogger" Width="521" Margin="3,10,-2,0" AllowDrop="True"
+                     HorizontalAlignment="Left" VerticalAlignment="Top" Background="Black" Foreground="Green" Height="155"/>
+
+        </GroupBox>
+
+    </Grid>
+
+</Window>
